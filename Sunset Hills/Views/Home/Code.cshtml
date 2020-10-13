@@ -20,29 +20,29 @@
     <div class="col">
         <pre>
 <code class="language-js line-numbers">[HttpPost]
-        public IActionResult Solve(int input1, int input2, int input3, int input4, int input5)
+    public IActionResult Solve(int input1, int input2, int input3, int input4, int input5)
+    {
+        int[] inArray = new int[] { input1, input2, input3, input4, input5 };
+        List<int> newArray = new List<int>();
+        int count = 1;
+        int currentMax = inArray[0];
+        newArray.Add(currentMax);
+
+        for (int i = 0; i < inArray.Length; i++)
         {
-            int[] inArray = new int[] { input1, input2, input3, input4, input5 };
-            List<int> newArray = new List<int>();
-            int count = 1;
-            int currentMax = inArray[0];
-            newArray.Add(currentMax);
-
-            for (int i = 0; i < inArray.Length; i++)
+            if (inArray[i] > currentMax)
             {
-                if (inArray[i] > currentMax)
-                {
-                    count++;
-                    newArray.Add(inArray[i]);
-                    currentMax = inArray[i];
-                }
-
-
+                count++;
+                newArray.Add(inArray[i]);
+                currentMax = inArray[i];
             }
 
-            ViewData["Output"] = ($"{count} buildings can see the sun with heights of [{string.Join(", ", newArray)}]");
-            return View();
+
         }
+
+        ViewData["Output"] = ($"{count} buildings can see the sun with heights of [{string.Join(", ", newArray)}]");
+        return View();
+    }
 </code>
 </pre>
 
